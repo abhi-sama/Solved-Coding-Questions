@@ -12,15 +12,15 @@
 class Solution
 {
 public:
-    vector<int> inorderTraversal(TreeNode *root)
+    vector<int> preorderTraversal(TreeNode *root)
     {
-        vector<int> inorder;
+        vector<int> preorder;
         TreeNode *curr = root;
         while (curr != NULL)
         {
             if (curr->left == NULL)
             {
-                inorder.push_back(curr->val);
+                preorder.push_back(curr->val);
                 curr = curr->right;
             }
             else
@@ -31,48 +31,32 @@ public:
                 if (prev->right == NULL)
                 {
                     prev->right = curr;
+                    preorder.push_back(curr->val);
                     curr = curr->left;
                 }
                 else
                 {
                     prev->right = NULL;
-                    inorder.push_back(curr->val);
                     curr = curr->right;
                 }
             }
         }
-        return inorder;
+        return preorder;
     }
-    /* vector<int> inorderTraversal(TreeNode* root) {
-     vector<int> res;
-     stack<TreeNode*> s;
-     while(root!=NULL||!s.empty())
-     {
-         while(root!=NULL)
-         {
-             s.push(root);
-             root=root->left;
-         }
-         root=s.top();
-         s.pop();
-         res.push_back(root->val);
-         root=root->right;
-     }
-     return res;
-     }*/
-    /*public:
-        vector<int> inorderTraversal(TreeNode* root) {
-            vector<int> nodes;
-            inorder(root, nodes);
-            return nodes;
-        }
-    private:
-        void inorder(TreeNode* root, vector<int>& nodes) {
-            if (!root) {
-                return;
-            }
-            inorder(root -> left, nodes);
-            nodes.push_back(root -> val);
-            inorder(root -> right, nodes);
-        }*/
+    // vector<int> res;
+    // stack<TreeNode*> s;
+    // while(root!=NULL||!s.empty())
+    // {
+    //     while(root!=NULL)
+    //     {
+    //         res.push_back(root->val);
+    //         s.push(root);
+    //         root=root->left;
+    //     }
+    //     root=s.top();
+    //     s.pop();
+    //     root=root->right;
+    // }
+    // return res;
+    // }
 };

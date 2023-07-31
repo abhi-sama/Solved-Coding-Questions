@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         curr=root
         res=[]
         while curr:
@@ -18,20 +18,19 @@ class Solution:
                     prev=prev.right
                 if prev.right is None:
                     prev.right=curr
+                    res.append(curr.val)
                     curr=curr.left
                 else:
                     prev.right=None
-                    res.append(curr.val)
                     curr=curr.right
         return res
-        # stack=[]
+        # s=[]
         # res=[]
-        # while root or stack:
+        # while root or s:
         #     while root:
-        #         stack.append(root)
+        #         res.append(root.val)
+        #         s.append(root)
         #         root=root.left
-        #     root=stack.pop()
-        #     res.append(root.val)
+        #     root=s.pop()
         #     root=root.right
         # return res
-        # return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
