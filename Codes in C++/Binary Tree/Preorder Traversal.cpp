@@ -43,6 +43,8 @@ public:
         }
         return preorder;
     }
+
+    // vector<int> preorderTraversal(TreeNode *root)
     // vector<int> res;
     // stack<TreeNode*> s;
     // while(root!=NULL||!s.empty())
