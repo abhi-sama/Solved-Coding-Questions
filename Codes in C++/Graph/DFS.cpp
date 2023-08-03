@@ -7,8 +7,6 @@ class Solution {
         for (auto it:adj[V])
             if(!vis[it])
             dfs(it,adj,vis,res);
-        
-            
     }
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         vector<int> res;
