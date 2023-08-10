@@ -9,7 +9,8 @@ class Solution:
             nextj=col+dj[ind]
             if 0<=nexti<n and 0<=nextj<n and m[nexti][nextj]==1 and vis[nexti][nextj]==0:
                 vis[row][col]=1
-                self.solve(nexti,nextj,s+,m,ans,vis,di,dj,n)
+                self.solve(nexti,nextj,s+dir[ind],m,ans,vis,di,dj,n)
+                vis[row][col]=0
     def findPath(self, m, n):
         ans=[]
         vis=[[0]*n for _ in range(n)]
