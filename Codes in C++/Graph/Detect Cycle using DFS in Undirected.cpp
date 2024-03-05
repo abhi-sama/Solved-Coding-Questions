@@ -1,27 +1,19 @@
-#include <queue>
-bool isCycle(int src, vector<int> adj[], vector<int> &vis)
+bool isCycle(int src, int parent ,vector<int> adj[], vector<int> &vis)
 {
     vis[src] = 1;
-    queue<pair<int, int>> q;
-    q.push({src, -1});
-    while (!q.empty())
-    {
-        int node = q.front().first;
-        int parent = q.front().second;
-        q.pop();
-        for (auto adjacent : adj[node])
+        for (auto adjacent : adj[src])
         {
             if (!vis[adjacent])
             {
-                vis[adjacent] = 1;
-                q.push({adjacent, node});
+                if(isCycle(adjacent,src,adj,vis))
+                return true;
             }
             else if (parent != adjacent)
             {
                 return true;
             }
         }
-    }
+    
     return false;
 }
 
@@ -40,7 +32,7 @@ string cycleDetection(vector<vector<int>> &edges, int n, int m)
     for (int i = 0; i < v; i++)
     {
         if (!vis[i])
-            if (isCycle(i, adj, vis))
+            if (isCycle(i, -1,adj, vis))
                 return "Yes";
     }
     return "No";

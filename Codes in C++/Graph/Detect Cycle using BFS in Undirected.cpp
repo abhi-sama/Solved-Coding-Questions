@@ -37,7 +37,7 @@ string cycleDetection(vector<vector<int>> &edges, int n, int m)
     }
     int v = n;
     vector<int> vis(v + 1, 0);
-    for (int i = 0; i < v; i++)
+    for (int i = 1; i <= v; i++)
     {
         if (!vis[i])
             if (isCycle(i, adj, vis))
