@@ -57,4 +57,24 @@ void printCurrentLevel(node* root, int level)
         printCurrentLevel(root->left, level - 1);
         printCurrentLevel(root->right, level - 1);
     }
+}
+
+int height(node* node)
+{
+    if (node == NULL)
+        return 0;
+    else {
+         
+        // Compute the height of each subtree
+        int lheight = height(node->left);
+        int rheight = height(node->right);
+ 
+        // Use the larger one
+        if (lheight > rheight) {
+            return (lheight + 1);
+        }
+        else {
+            return (rheight + 1);
+        }
+    }
 }*/
