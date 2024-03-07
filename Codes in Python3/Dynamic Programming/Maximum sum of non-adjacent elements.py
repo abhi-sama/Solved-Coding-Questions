@@ -1,8 +1,8 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         n=len(nums)
-        prev2=-1
-        prev=-1
+        prev2=0
+        prev=nums[0]
         for index in range(n):
             pick = nums[index]
             if index>1:
@@ -17,6 +17,7 @@ class Solution:
 #     def rob(self, nums: List[int]) -> int:
 #         n=len(nums)
 #         dp=[-1]*n
+#         dp[0]=nums[0]
 #         for index in range(n):
 #             pick = nums[index]
 #             if index>1:
