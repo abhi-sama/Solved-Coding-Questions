@@ -19,6 +19,20 @@ public:
     }
 
 };
+///////SuperOptimalSolution
+// class Solution {
+// public:
+//     long int uniquePaths(int m, int n) {
+//        long int N=m+n-2;
+//        long int r=m-1;
+//         long int res=1;
+//         for(long int i=1;i<=r;i++)
+//         {   
+//             res=res*(N-r+i)/i;
+//         }
+//     return (int)res; 
+//     }
+// };
 // class Solution {
 // public:
 //     int uniquePaths(int m, int n) {
