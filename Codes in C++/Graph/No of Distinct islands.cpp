@@ -28,11 +28,13 @@ int distinctIslands(int** arr, int m, int n)
             if (vis[i][j]==0 && arr[i][j]==1)
             {
                 vector<pair<int,int>> vec;
+                //O(N*M*4)
                 dfs(i,j,arr,vis,vec,m,n,i,j);
                 s.insert(vec);
             }
         }
     }
+    //O(N*M*log(N*M) + N*M*4)//Overall TC
 
     return s.size();
 }
