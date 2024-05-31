@@ -20,15 +20,18 @@ public:
 // class Solution {
 // public:
 //     int minDistance(string word1, string word2) {
-//     int ED[word1.length()+1][word2.length()+1];
-//     for (int i = 0; i <= word1.length(); i++)
-//  	    for (int j = 0; j <= word2.length(); j++)
-//         {
-//             if(i==0)ED[i][j]=j;
-//             else if(j==0)ED[i][j]=i;
-//             else if(word1[i-1]==word2[j-1])ED[i][j]=ED[i-1][j-1];
-//             else ED[i][j]=min(min(ED[i-1][j],ED[i][j-1]),ED[i-1][j-1])+1;
+//     int m=word1.size();
+//     int n=word2.size();
+//     vector<vector<int>> ED(m+1,vector<int>(n+1,0));
+//     for(int i=0;i<=m;i++) ED[i][0]=i;
+//     for(int j=0;j<=n;j++) ED[0][j]=j;
+//     for(int i=1;i<=m;i++){
+//         for(int j=1;j<=n;j++){
+//             if(word1[i-1]==word2[j-1])ED[i][j]=ED[i-1][j-1];
+//             else
+//                 ED[i][j]=min(ED[i-1][j-1],min(ED[i][j-1],ED[i-1][j]))+1;
 //         }
-//         return ED[word1.length()][word2.length()];
+//     }
+//     return ED[m][n];
 //     }
 // };
