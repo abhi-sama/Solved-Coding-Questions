@@ -1,3 +1,9 @@
+# /*
+# Psuedocode:-
+# 1)Create a visited array grid.
+# 2)Traverse the entire grid using DFS starting from a land position available in the grid in all the four direction.
+# 3)If traversing in any one of the direction you find the grid boundary or water add a value 1 to the global perimeter variable.
+# */
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         rows,cols=len(grid),len(grid[0])
