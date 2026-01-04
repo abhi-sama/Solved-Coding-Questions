@@ -1,3 +1,9 @@
+# Psuedocode:-
+# 1)Create a indegree array for all the people in the town.
+# 2)If the town judge exist his indegree will be equal to (n-1) otherwise there isn o town judge
+#  and hence return -1
+
+
 # Approach 1
 class Solution:
     def findJudge(self, n: int, trust: List[List[int]]) -> int:
