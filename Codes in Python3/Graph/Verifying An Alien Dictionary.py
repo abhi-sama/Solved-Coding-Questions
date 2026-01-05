@@ -1,3 +1,11 @@
+
+# Pseudocode:-
+# 1)Create a hashmap of of the dictionary order with the letters and its index in the 
+# order.
+# 2)For each word in the words list check if the order is followed, if not followed return false,
+# otherwise return true.
+
+
 # Approach 1
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
