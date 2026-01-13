@@ -1,37 +1,55 @@
-from os import *
-from sys import *
-from collections import *
-from math import *
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+#DFS
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
+        oldToNew={}
+        
+        def dfs(node):
+            if node in oldToNew:
+                return oldToNew[node]
+            copy=Node(node.val)
+            oldToNew[node]=copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
 
-# Class for graph node is as follows:
-class graphNode:
-    def __init__(self, *args):
-        if(len(args) == 0):
-            self.data = 0
-            self.neighbours = []
+# TC=O(n)=O(E+V)
+# SC=O(V)
 
-        elif(len(args) == 1):
-            self.data = args[0]
-            self.neighbours = []
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val = 0, neighbors = None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
+"""
+#BFS
+class Solution:
+    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+        if not node:
+            return None
 
-        elif(len(args) == 2):
-            self.data = args[0]
-            self.neighbours = args[1]
-
-    def __del__(self):
-        self.neighbours.clear()
-
-
-def cloneGraph(node):
-    oldToNew={}
-    def dfs(node):
-        if node in oldToNew:
-            return oldToNew[node]
-        copy=graphNode(node.data)
+        oldToNew= {}
+        copy=Node(node.val)
         oldToNew[node]=copy
-        for nei in node.neighbours:
-            copy.neighbours.append(dfs(nei))
-        return copy
+        q=deque([node])
+        while q:
+            cur=q.popleft()
+            for nei in cur.neighbors:
+                if nei not in oldToNew:
+                    oldToNew[nei]=Node(nei.val)
+                    q.append(nei)
+                oldToNew[cur].neighbors.append(oldToNew[nei])
+            
+        return oldToNew[node]
 
-    return dfs(node) if node else None
-    pass
+         
