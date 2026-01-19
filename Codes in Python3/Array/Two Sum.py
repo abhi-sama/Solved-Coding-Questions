@@ -6,3 +6,6 @@ class Solution:
             if diff in hashMap:
                 return [hashMap[diff],i]
             hashMap[nums[i]]=i
+        return []
+# TC=O(n)
+# SC=O(n)
