@@ -1,35 +1,35 @@
 class Solution:
-    def dfs(self,row:int,col:int,board: List[List[str]],vis:List[List[int]],m:int,n:int)->None:
-        dr=[-1,0,+1,0]
-        dc=[0,+1,0,-1]
-        vis[row][col]=1
-        for i in range(4):
-            nrow=row+dr[i]
-            ncol=col+dc[i]
-            if nrow>=0 and nrow<m and ncol>=0 and ncol<n and board[nrow][ncol]=='O' and vis[nrow][ncol]==0:
-                self.dfs(nrow,ncol,board,vis,m,n) 
-
     def solve(self, board: List[List[str]]) -> None:
-        m=len(board)
-        n=len(board[0])
-        vis=[[0]*n for _ in range(m)]
-        for i in range(n):
-            if vis[0][i]==0 and board[0][i]=='O':
-                self.dfs(0,i,board,vis,m,n)
-            if vis[m-1][i]==0 and board[m-1][i]=='O':
-                self.dfs(m-1,i,board,vis,m,n)
-
-        for i in range(m):
-            if vis[i][0]==0 and board[i][0]=='O':
-                self.dfs(i,0,board,vis,m,n)
-            if vis[i][n-1]==0 and board[i][n-1]=='O':
-                self.dfs(i,n-1,board,vis,m,n)  
-
-        for i in range(m):
-            for j in range(n):
-                if vis[i][j]==0 and board[i][j]=='O':
-                    board[i][j]='X'      
-        """
-        Do not return anything, modify board in-place instead.
-        """
+        ROWS,COLS=len(board),len(board[0])
+        visited=[[False]*COLS for _ in range(ROWS)]
+        direction=[[-1,0],[0,-1],[1,0],[0,1]]
+        def dfs(r,c):
+            if visited[r][c]:
+                return
+            visited[r][c]=True
+            for dr,dc in direction:
+                nrow,ncol=dr+r,dc+c
+                if nrow in range(0,ROWS) and ncol in range(0,COLS) \
+                and board[nrow][ncol]=="O" \
+                and visited[nrow][ncol]==False:
+                    dfs(nrow,ncol)
         
+        for r in range(ROWS):
+            if visited[r][0]==False and board[r][0]=="O":
+                    dfs(r,0)
+            if visited[r][COLS-1]==False and board[r][COLS-1]=="O":
+                    dfs(r,COLS-1)           
+
+        for c in range(COLS):
+            if visited[0][c]==False and board[0][c]=="O":
+                    dfs(0,c)
+            if visited[ROWS-1][c]==False and board[ROWS-1][c]=="O":
+                    dfs(ROWS-1,c)           
+        
+        for r in range(ROWS):
+            for c in range(COLS):
+                if visited[r][c]==False and board[r][c]=="O":
+                    board[r][c]="X"
+
+# TC=O(m*n)
+# SC=O(m*n)
