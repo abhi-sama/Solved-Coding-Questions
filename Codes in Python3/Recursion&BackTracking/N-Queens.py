@@ -1,37 +1,78 @@
+#Backtracking using Hashset
 class Solution:
-    def solve(self, col, board, ans, leftrow, upperDiagonal, lowerDiagonal, n):
-        if col == n:
-            ans.append(board[:])
-            return
-        
-        for row in range(n):
-            if leftrow[row] == 0 and lowerDiagonal[row+col] == 0 and upperDiagonal[n-1+col-row] == 0:
-                board[row] = board[row][:col] + 'Q' + board[row][col+1:]
-                leftrow[row] = 1
-                lowerDiagonal[row+col] = 1
-                upperDiagonal[n-1+col-row] = 1
-                self.solve(col+1, board, ans, leftrow,
-                           upperDiagonal, lowerDiagonal, n)
-                board[row] = board[row][:col] + '.' + board[row][col+1:]
-                leftrow[row] = 0
-                lowerDiagonal[row+col] = 0
-                upperDiagonal[n-1+col-row] = 0
-
     def solveNQueens(self, n: int) -> List[List[str]]:
-        ans = []
-        board = ['.'*n for _ in range(n)]
-        leftrow = [0]*n
-        upperDiagonal = [0]*(2*n-1)
-        lowerDiagonal = [0]*(2*n-1)
-        self.solve(0, board, ans, leftrow, upperDiagonal, lowerDiagonal, n)
-        return ans
+        res=[]
+        board = [["."] * n for i in range(n)]
+        col=set()
+        posDiag=set()
+        negDiag=set()
 
-if __name__ == '__main__':
-    n = 4
-    obj = Solution()
-    ans = obj.solveNQueens(n)
-    for i in range(len(ans)):
-        print("Arrangement", i+1)
-        for j in range(len(ans[0])):
-            print(ans[i][j])
-            print()
+        def backtrack(r):
+            if r==n:
+                copy=["".join(row) for row in board]
+                res.append(copy)
+                return
+
+            for c in range(n):
+                if c in col or (r+c) in posDiag or (r-c) in negDiag:
+                    continue
+                col.add(c)
+                posDiag.add((r+c))
+                negDiag.add((r-c))
+                board[r][c]="Q"
+                backtrack(r+1)
+                board[r][c]="."
+                negDiag.remove((r-c))
+                posDiag.remove((r+c))
+                col.remove(c)
+
+        backtrack(0)
+        return res
+# TC=O(n!)
+# SC=O(n^2)
+
+
+#Backtracking
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        res=[]
+        board = [["."] * n for i in range(n)]
+
+        def isSafe(r,c):
+            row=r-1
+            while row>=0:
+                if board[row][c]=="Q":
+                    return False
+                row-=1
+            
+            row,col=r-1,c-1
+            while row>=0 and col>=0:
+                if board[row][col]=="Q":
+                    return False
+                row-=1
+                col-=1
+            
+            row,col=r-1,c+1
+            while row>=0 and col<n:
+                if board[row][col]=="Q":
+                    return False
+                row-=1
+                col+=1
+            return True          
+
+        def backtrack(r):
+            if r==n:
+                copy=["".join(row) for row in board]
+                res.append(copy)
+                return
+
+            for c in range(n):
+                if isSafe(r,c):
+                    board[r][c]="Q"
+                    backtrack(r+1)
+                    board[r][c]="."
+
+        backtrack(0)
+        return res
+# TC=O(n!)
+# SC=O(n^2)

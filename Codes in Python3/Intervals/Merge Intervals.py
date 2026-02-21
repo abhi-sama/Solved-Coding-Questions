@@ -2,7 +2,7 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         res=[]
-        intervals.sort()
+        intervals.sort(key=lambda i:i[0])
         res.append(intervals[0])
         
         for i in range(1,len(intervals)):
