@@ -1,8 +1,7 @@
+#Using Hash Set
 class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
-        seen=set()
-        for num in nums:
-            if num in seen:
-                return True
-            seen.add(num)
-        return False
+        return len(set(nums))<len(nums)
+# TC=O(n)
+# SC=O(n)
+        
