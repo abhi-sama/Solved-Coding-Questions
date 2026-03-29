@@ -1,3 +1,4 @@
+#Using DFS
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -21,7 +22,7 @@ class Solution:
         
         dfs(root)
         return res
-    
+
 # TC=O(n)
 # SC=O(h)
         
