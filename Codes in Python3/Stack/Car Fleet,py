@@ -1,0 +1,21 @@
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        v=[]
+        for i in range(len(position)):
+            time=(target-position[i])/speed[i]
+            v.append((position[i],time))
+
+        v.sort()
+
+        fleet=0
+        maxTime=0
+        for i in range(len(v)-1,-1,-1):
+            # If current car takes longer than the fleet in front, it starts a new fleet
+            if v[i][1]>maxTime:
+                maxTime=v[i][1]
+                fleet+=1
+
+        return fleet
+ 
+# TC=O(nlogn)
+# SC=O(n)
