@@ -22,6 +22,7 @@ class Solution:
 # SC=O(n^2)
 
 
+
 # #Solution 1
 # class Solution:
 #     def isValidSudoku(self, board: List[List[str]]) -> bool:
