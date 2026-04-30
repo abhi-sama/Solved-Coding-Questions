@@ -16,6 +16,7 @@ class Solution:
         if idle_spots > 0:
             return len(tasks) + idle_spots
 
+
         return len(tasks)
 
 
