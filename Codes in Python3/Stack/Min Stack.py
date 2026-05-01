@@ -20,6 +20,7 @@ class MinStack:
     def getMin(self) -> int:
         return self.minStack[-1]
 
+
 # TC=O(1)
 # SC=O(n)
         
