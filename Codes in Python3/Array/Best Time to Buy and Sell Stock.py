@@ -6,3 +6,5 @@ class Solution:
             minPrice = min(minPrice, prices[i])
             maxPro = max(maxPro, prices[i] - minPrice)
         return maxPro
+
+        
